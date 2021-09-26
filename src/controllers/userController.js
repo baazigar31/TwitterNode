@@ -46,5 +46,6 @@ module.exports.create= function(req,res){
 
 module.exports.createSession= function(req,res){
     console.log('Logged In');
-    res.status(201).send("User Logged In!!");
+    // res.status(201).send("User Logged In!!");
+    return res.redirect('/');
 }
