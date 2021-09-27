@@ -6,6 +6,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./src/config/passport-local-strategy');
+const mongoStore = require('connect-mongo');
 
 
 const router= require('./src/routes/index');
@@ -27,7 +28,17 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: 300000
-    }
+    },
+    store: new mongoStore({
+         mongoUrl:'mongodb://localhost/twitter_dev',
+         autoRemove:'disable'
+    },function(err){
+        if(err)
+         console.error(err);
+        else{
+            console.log('connect-mongo setup done');
+        }
+    })
 }))
 
 app.use(passport.initialize());
