@@ -3,16 +3,22 @@ const User = require('../models/user');
 module.exports.profile= function(req,res){
     // res.send('<h1>User Profile</h1>');
     // return res.render('./users/user_profile',{title:"User Profile",layout:false});
-    return res.render('./users/user_profile',{title:"User Profile"} ); // by deaflut layout will look in views for the layout 
+    return res.render('./users/user_profile'); // by deaflut layout will look in views for the layout 
 }
 
 module.exports.signUp=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('./users/user_sign_up',{
         title:'Twitter | Sign Up'
     });
 }
 
 module.exports.signIn=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('users/user_sign_in',{
         title:'Twitter | Sign In'
     });
