@@ -55,3 +55,8 @@ module.exports.createSession= function(req,res){
     // res.status(201).send("User Logged In!!");
     return res.redirect('/');
 }
+
+module.exports.destroySession = function(req,res){
+    req.logout();
+    return res.redirect('/')
+}

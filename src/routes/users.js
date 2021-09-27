@@ -3,7 +3,7 @@ const passport = require('passport');
 const { route } = require('.');
 const { checkAuthentication } = require('../config/passport-local-strategy');
 // const userController=require('../controllers/userController');
-const {profile,signUp,signIn,create,createSession}=require('../controllers/userController');
+const {profile,signUp,signIn,create,createSession, destroySession}=require('../controllers/userController');
 
 
 
@@ -14,6 +14,7 @@ router.get('/profile',passport.checkAuthentication, profile)
 router.get('/signup',signUp)
 router.get('/signin',signIn)
 router.post('/create',create) 
+router.get('/signout',destroySession);
 
 router.post('/create-session', passport.authenticate(
     'local',

@@ -1,15 +1,18 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title%></title>
-</head>
-<body>
- -->
+<%- include('./util/_header') %>
+<ul>
+    <% if(locals.user) { %>
+        Hi  <%= user.name %>
+        <li> 
+            <a href="/users/signout">Log Out</a>
+        </li>
+        <% }else{ %>
+            <li>
+                <a href="/users/signin">Sign In</a>
+            </li>
+            <li>
+                <a href="/users/signup">Sign Up</a>
+            </li>
+        <% }%>
+</ul>
 
-    <h1>Welcome to <%= title%></h1>
-
-     
-<!-- </body>
-</html> -->
+<h1>Welcome to <%= title%></h1> 

@@ -20,7 +20,7 @@ app.use(cors());
 app.use(urlencoded({extended:true}));
 
 app.use(express.static('./src/assets'));
-app.use(expressLayouts);
+// app.use(expressLayouts);
 
 app.use(session({
     name: 'twitter',
