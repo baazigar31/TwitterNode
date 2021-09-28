@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./src/config/passport-local-strategy');
 const mongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware')
 
 
 const router= require('./src/routes/index');
@@ -15,12 +16,21 @@ const connect= require('./src/config/database');
 var expressLayouts = require('express-ejs-layouts');
 
 const app =express();
+
+app.use(sassMiddleware({
+    src: './src/assets/scss',     // from where to take css file from
+    dest: './src/assets/css',
+    debug: true,
+    outputStyle:'expanded',
+    prefix: '/css'
+}));
+
 app.use(json());
 app.use(cors());
 app.use(urlencoded({extended:true}));
 
 app.use(express.static('./src/assets'));
-// app.use(expressLayouts);
+app.use(expressLayouts);
 
 app.use(session({
     name: 'twitter',
