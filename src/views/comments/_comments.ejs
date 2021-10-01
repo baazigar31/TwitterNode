@@ -1,0 +1,12 @@
+<p>
+    <%= comment.content %>
+    <br>
+    <small><%= comment.user.name %> </small> 
+</p>
+<% if(locals.user && locals.user.id == comment.user.id) { %>  
+    <p>
+        <form action="/comments/destroy/<%= comment.id %>" method="GET">
+        <input type="submit" value="Remove Comment" >
+        </form>
+    </p>
+<% } %> 
