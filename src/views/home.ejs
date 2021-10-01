@@ -27,7 +27,7 @@
             <div>
                 <% if (locals.user) { %>
                     <form action="/comments/create" method="POST">
-                        <input type="text" name="content" id="" placeholder="Your comment" required>
+                        <input type="text" name="content" id="" placeholder="Your comment(Min. length 5)" size="40" required>
                         <input type="hidden" name="tweet" id="" value="<%= tweet._id %>">
                         <input type="submit" name="" id="" value="Add Comment">
                     </form>
@@ -35,11 +35,19 @@
                 <div>
                     <ul>
                         <% for(comment of tweet.comments) { %> 
-                            <p>
-                                <%= comment.content %>
-                                <br>
-                                <small><%= comment.user.name %> </small> 
-                            </p>
+                                <p>
+                                    <%= comment.content %>
+                                    <br>
+                                    <small><%= comment.user.name %> </small> 
+                                </p>
+                                <% if(locals.user && locals.user.id == comment.user.id) { %>  
+                                    <p>
+                                        <form action="/comments/destroy/<%= comment.id %>" method="GET">
+                                        <input type="submit" value="Remove Comment" >
+                                        </form>
+                                    </p>
+                                <% } %> 
+                            
                         <% } %> 
                     </ul>
                 </div> 

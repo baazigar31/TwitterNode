@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 
 
 const create = function(req, res) {
-    console.log(req);
+    // console.log(req);
     Tweet.create({
         content: req.body.content,
         user: req.user._id
@@ -17,7 +17,8 @@ const create = function(req, res) {
 }
 
 const destroy = function(req,res){
-    console.log('hit');
+    // console.log('hit');
+    //console.log(req);
     Tweet.findById(req.params.id, function(err,tweet){
         if(err){
             return res.redirect('/');

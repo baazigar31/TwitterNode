@@ -14,7 +14,7 @@ module.exports.root = function(req,res) {
      })
      .exec(function(err,tweets){
       let fetchedTweets = tweets;
-      console.log(tweets);
+    //   console.log(tweets);
       if(err){
         console.log('Error finding tweets');
         fetchedTweets = {};
