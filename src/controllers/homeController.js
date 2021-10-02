@@ -1,5 +1,6 @@
-const ejs =require('ejs');
+// const ejs =require('ejs');
 const Tweet = require('../models/tweet');
+const User = require('../models/user');
 
 module.exports.root = function(req,res) {
     // return res.send('<h1>Welcome to twitter</h1>');
@@ -12,14 +13,21 @@ module.exports.root = function(req,res) {
              path:'user'
          }
      })
-     .exec(function(err,tweets){
+     .exec(async function(err,tweets){
       let fetchedTweets = tweets;
     //   console.log(tweets);
+     const users = await User.find({});
+    //  console.log(users)           // displays all the users in console.
       if(err){
         console.log('Error finding tweets');
         fetchedTweets = {};
       }
-      return res.render('home',{title:"Twitter",tweets:fetchedTweets,layout:'layout'});
+      return res.render('home',{
+          title:"Twitter",
+          tweets:fetchedTweets,
+          layout:'layout',
+          users:users
+        });
     });
     
 }

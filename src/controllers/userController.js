@@ -3,8 +3,19 @@ const User = require('../models/user');
 module.exports.profile= function(req,res){
     // res.send('<h1>User Profile</h1>');
     // return res.render('./users/user_profile',{title:"User Profile",layout:false});
-    return res.render('./users/user_profile'); // by deaflut layout will look in views for the layout 
+
+    User.findById(req.params.id, function(err, user){
+        if(!user){
+            return res.redirect('/');
+        }
+        return res.render('./users/user_profile',{
+            title:'User Profile',
+            profile_user:user
+        }); // by deaflut layout will look in views for the layout 
+    
+    })
 }
+    
 
 module.exports.signUp=function(req,res){
     if(req.isAuthenticated()){
@@ -62,4 +73,21 @@ module.exports.destroySession = function(req,res){
     // req.session.destroy(function (err) {
     //     res.redirect('/'); //Inside a callback… bulletproof!
     //   });
+}
+
+module.exports.update = function(req,res){
+    console.log(req.body);
+    if(req.user.id == req.params.id) {
+            User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+                if(err){
+                    console.log('Error updating user');
+                    return res.redirect('/');
+                }
+                return res.redirect('back');
+
+            })
+    }
+    else {
+        return res.status(401).isAuthenticated('Unauthorised');
+    }
 }
