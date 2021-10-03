@@ -12,7 +12,7 @@ module.exports.root = async function(req,res) {
          populate: {
              path:'user'
          }
-     })
+     }).sort({createdAt:-1})
      .exec(async function(err,tweets){
       let fetchedTweets = tweets;
     //   console.log(tweets);

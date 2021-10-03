@@ -12,6 +12,7 @@ const create = function(req, res) {
             console.error("Error in creating a tweet");
             return;
         }
+        req.flash('info','Tweet Created Successfully')
         return res.redirect('back');
     })
 }

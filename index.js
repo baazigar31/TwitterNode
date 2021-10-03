@@ -9,7 +9,8 @@ const passportLocal = require('./src/config/passport-local-strategy');
 const mongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
-
+// const multer  = require('multer');
+// const upload = multer({ dest: './src/uploads' });
 
 const router= require('./src/routes/index');
 const connect= require('./src/config/database');
