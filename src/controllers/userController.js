@@ -62,14 +62,16 @@ module.exports.create= function(req,res){
 }
 
 module.exports.createSession= function(req,res){
-    console.log('Logged In');
+    // console.log('Logged In');
     // res.status(201).send("User Logged In!!");
+    req.flash('success','Signed In Successfully');
     return res.redirect('/');
 }
 
 module.exports.destroySession = function(req,res){
     req.logout();
-    return res.redirect('/')
+    req.flash('success','Logged out Successfully')
+    return res.redirect('/');
     // req.session.destroy(function (err) {
     //     res.redirect('/'); //Inside a callback… bulletproof!
     //   });

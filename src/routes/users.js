@@ -19,7 +19,8 @@ router.post('/update/:id',passport.checkAuthentication,update)
 
 router.post('/create-session', passport.authenticate(
     'local',
-    { successRedirect: '/',
+    { 
+      // successRedirect: '/',
       failureRedirect: '/users/signin'
     }
 ),createSession);  // passport.authenticate is being used as a middleware

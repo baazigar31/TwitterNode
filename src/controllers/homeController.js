@@ -2,9 +2,9 @@
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
 
-module.exports.root = function(req,res) {
+module.exports.root = async function(req,res) {
     // return res.send('<h1>Welcome to twitter</h1>');
-
+    // console.log(req);  Now the req contains flash
      Tweet.find({})
      .populate('user')
      .populate({

@@ -7,13 +7,15 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./src/config/passport-local-strategy');
 const mongoStore = require('connect-mongo');
-const sassMiddleware = require('node-sass-middleware')
+const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
 
 
 const router= require('./src/routes/index');
 const connect= require('./src/config/database');
 
 var expressLayouts = require('express-ejs-layouts');
+const { setFlash } = require('./src/config/middleware');
 
 const app =express();
 
@@ -54,10 +56,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
 
 
 // app.set('layout',__dirname+'/src/views/layouts/layout')
-app.use('/',router);
+
+app.use('/',setFlash,router);
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
