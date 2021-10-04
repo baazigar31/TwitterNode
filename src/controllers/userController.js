@@ -31,7 +31,8 @@ module.exports.signIn=function(req,res){
         return res.redirect('/users/profile');
     }
     return res.render('users/user_sign_in',{
-        title:'Twitter | Sign In'
+        title:'Twitter | Sign In',
+        layout:'user_layout'
     });
 } 
 
